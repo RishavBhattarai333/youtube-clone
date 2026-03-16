@@ -45,7 +45,10 @@ const timeAgo = (dateStr: string): string => {
 const VideoCard = ({ video }: { video: VideoItem }) => {
   const videoId = getVideoId(video.id);
   const { snippet, statistics } = video;
-  const thumbnail = snippet.thumbnails.high?.url || snippet.thumbnails.medium?.url;
+  const thumbnail = snippet.thumbnails.high?.url || 
+                    snippet.thumbnails.medium?.url ||
+                    `https://i.ytimg.com/vi/${videoId}/mqdefault.jpg`;
+
 
   return (
     <Link to={`/video/${videoId}`} className="group flex flex-col gap-2">
@@ -54,6 +57,10 @@ const VideoCard = ({ video }: { video: VideoItem }) => {
         <img
           src={thumbnail}
           alt={snippet.title}
+          onError={(e) => {
+            e.currentTarget.onerror = null;
+            e.currentTarget.src = `https://i.ytimg.com/vi/${videoId}/mqdefault.jpg`;
+          }}
           className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-200"
         />
       </div>

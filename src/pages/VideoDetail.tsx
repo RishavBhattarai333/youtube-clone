@@ -89,7 +89,9 @@ const VideoActions = ({ likes, views, comments }: {
 const RelatedCard = ({ video }: { video: VideoItem }) => {
   const videoId = getVideoId(video.id);
   const { snippet } = video;
-  const thumbnail = snippet.thumbnails.medium?.url || snippet.thumbnails.default?.url;
+  const thumbnail = snippet.thumbnails.medium?.url ||
+                    snippet.thumbnails.default?.url ||
+                    `https://i.ytimg.com/vi/${videoId}/mqdefault.jpg`;
 
   return (
     <Link
@@ -100,6 +102,10 @@ const RelatedCard = ({ video }: { video: VideoItem }) => {
         <img
           src={thumbnail}
           alt={snippet.title}
+          onError={(e) => {
+            e.currentTarget.onerror = null;
+            e.currentTarget.src = `https://i.ytimg.com/vi/${videoId}/mqdefault.jpg`;
+          }}
           className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-200"
         />
       </div>
