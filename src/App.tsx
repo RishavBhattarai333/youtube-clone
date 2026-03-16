@@ -7,6 +7,7 @@ import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Navbar from "./components/Navbar";
 import Sidebar from "./components/Sidebar";
+import Subscriptions from "./pages/Subscriptions.tsx";
 
 const noSidebarRoutes = ["/login", "/register"];
 
@@ -27,6 +28,7 @@ function Layout() {
             <Route path="/channel/:id"   element={<ChannelPage />} />
             <Route path="/login"         element={<Login />} />
             <Route path="/register"      element={<Register />} />
+            <Route path="/subscriptions" element={<Subscriptions />} />
           </Routes>
         </main>
       </div>
