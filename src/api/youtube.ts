@@ -30,12 +30,16 @@ const fetchFromAPI = async <T>(endpoint: string, params: object): Promise<T> => 
 
 // ── 1. Fetch Home Feed (trending/category videos) ──────────────
 export const fetchHomeFeed = async (categoryId = "0") => {
+  const pages = ["", "CAUQAA", "CAkQAA", "CBsQAA", "CCoQAA", "CDIQAA"];
+  const randomPage = pages[Math.floor(Math.random() * pages.length)];
+
   return fetchFromAPI<APIResponse<VideoItem>>("/videos", {
     part: "snippet,statistics",
     chart: "mostPopular",
     regionCode: "US",
     videoCategoryId: categoryId,
     maxResults: 20,
+    pageToken: randomPage,
   });
 };
 

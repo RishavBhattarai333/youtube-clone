@@ -159,11 +159,14 @@ const Home = () => {
 
         {!loading && !error && (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
-            {data?.items.map((video) => (
-              <VideoCard
-                key={getVideoId(video.id)}
-                video={video}
-              />
+            {data?.items
+              .slice()
+              .sort(() => Math.random() - 0.5)
+              .map((video) => (
+                <VideoCard
+                  key={getVideoId(video.id)}
+                  video={video}
+                />
             ))}
           </div>
         )}
