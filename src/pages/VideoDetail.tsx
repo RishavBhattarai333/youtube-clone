@@ -130,20 +130,21 @@ export default function VideoDetail() {
   const [expanded, setExpanded] = useState(false);
 
   return (
-    <div className="bg-[#0f0f0f] min-h-screen px-4 py-6">
-      <div className="max-w-7xl mx-auto flex flex-col lg:flex-row gap-6">
+    <div className="bg-[#0f0f0f] min-h-screen px-0 sm:px-4 py-0 sm:py-6">
+      <div className="max-w-7xl mx-auto flex flex-col lg:flex-row gap-0 sm:gap-6">
 
         {/* ── Left: Player + Info ─────────────────────────────── */}
         <div className="flex-1 min-w-0">
 
           {/* Video Player */}
-          <div className="w-full aspect-video rounded-xl overflow-hidden bg-black">
+          <div className="w-full aspect-video rounded-xl overflow-hidden bg-black relative">
             {id && (
               <iframe
                 src={`https://www.youtube.com/embed/${id}?autoplay=1`}
                 title="Video player"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowFullScreen
+                {...{ webkitallowfullscreen: "true", mozallowfullscreen: "true" }}
                 className="w-full h-full"
               />
             )}
